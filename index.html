@@ -44,7 +44,7 @@
           return "invalid coordinates";
       }
     
-      const cell = grid[y - 1][x - 1];
+      const cell = grid[y - 1][x - 1];          <-- Here I am accessing the element within a 2D array grid
       return cell === "🟦" ? "🟦 🥳" : "🟥 💀";
     }
     
@@ -52,12 +52,38 @@
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
-      return 'shorten all prop names to 9 chars or less';
+      for (let key in obj) {
+        if (key.length > 9) {
+          return 'shorten all prop names to 9 chars or less';
+        } else {
+          if (obj[key] === null) {
+            delete obj[key];
+          } else if (typeof obj[key] === 'number') {
+            obj[key] = !!obj[key];
+          }
+        }
+      }
+      return obj;
     }
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
-      return "lost somewhere in time";
+      if (forbidden === []) {
+        return "lost somewhere in time";
+      } else {
+        const words = text.split(' ');
+        for (let i = 0; i < words.length; i++) {
+          const word = words[i];
+          if (forbidden.includes(word)) {
+            let newX = '';
+            for (let j = 0; j < word.length; j++) {
+              newX += 'x';
+            }
+            words[i] = newX;
+          }
+        }
+        return words.join(' ');
+      }
     }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
@@ -68,7 +94,7 @@
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
     function diceRolls() {
-
+      // Maybe later I can do it, now I do not get it at all :/ 
     }
 
     // 🧪 DO NOT make any changes below this line ===================
