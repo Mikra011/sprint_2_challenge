@@ -7,20 +7,48 @@
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
       if (profile.active) {
-          if (reason) {
-            return { active: false, reason: 'because' };
-          } else {
-            return 'confirm status manually';
-          } 
+        if (reason) {
+          return { active: false, reason: 'because' };
         } else {
-          return { active: true };
+          return 'confirm status manually';
         }
+      } else {
+        return { active: true };
       }
+    }
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
-      return "invalid coordinates";
+      if ((x < 1 || x > 3) || (y < 1 || y > 3)) {
+        return "invalid coordinates";
+      } else {
+        for (let i = 0; i < grid.length; i++) {
+          if (i + 1 === y) {
+            for (let j = 0; j < grid[i].length; j++) {
+              if (j + 1 === x) {
+                if (grid[i][j] === "🟦") {
+                  return "🟦 🥳";
+                } else {
+                  return "🟥 💀";
+                }
+              }
+            }
+          }
+        }
+      }
     }
+
+    /*
+    function mineSweeper(grid, x, y) {
+      if (x < 1 || x > 3 || y < 1 || y > 3) {
+          return "invalid coordinates";
+      }
+    
+      const cell = grid[y - 1][x - 1];
+      return cell === "🟦" ? "🟦 🥳" : "🟥 💀";
+    }
+    
+    An alternative soltuion with ternary operators */
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
